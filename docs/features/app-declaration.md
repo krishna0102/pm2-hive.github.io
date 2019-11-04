@@ -336,6 +336,27 @@ You'll need to use `--env <envname>` to tell pm2 to use specific environment def
 In this example, you will run `pm2 start ecosystem.json` and it will start your application with the default environment (in development so).
 Then you use `pm2 start ecosystem.json --env production` and it will use the attribute `env_<name>` where name is `production` here, so it will start your app with `NODE_ENV=production`.
 
+### Environment definition with port
+
+```json
+{
+  "apps" : [{
+    "name"        : "worker",
+    "script"      : "./worker.js",
+    "watch"       : true,
+    "env": {
+      "NODE_ENV": "development"
+      "PORT": 1337,
+    },
+    "env_production" : {
+       "NODE_ENV": "production",
+       "PORT": 1338,
+    }
+  }]
+}
+```
+In this example, you can set your server port.
+
 ### Special `ext_type`
 
 - min_uptime
